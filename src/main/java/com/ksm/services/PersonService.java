@@ -36,4 +36,11 @@ public class PersonService {
         
         return response.getBody();
     }
+    
+    public Person getById(Integer id) {
+        ResponseEntity<Person> response = restTemplate
+                .exchange(URL + "/" +id, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<Person>() {});
+        return response.getBody();
+    }
 }

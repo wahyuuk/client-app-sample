@@ -33,7 +33,7 @@ public class PersonController {
     
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("id", id);
+        model.addAttribute("person", personService.getById(id));
         return "detail";
     }
 }

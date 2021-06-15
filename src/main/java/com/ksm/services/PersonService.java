@@ -14,6 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -42,5 +43,13 @@ public class PersonService {
                 .exchange(URL + "/" +id, HttpMethod.GET, null,
                         new ParameterizedTypeReference<Person>() {});
         return response.getBody();
+    }
+    
+    public void create(Person person) {
+        try {
+            restTemplate.postForEntity(URL, person, Person.class);
+        } catch (RestClientException e) {
+            e.printStackTrace();
+        }
     }
 }

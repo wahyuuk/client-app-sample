@@ -19,5 +19,5 @@ public class Person {
     private String lastName;
 
     public Person() {
-    }
+    }    
 }

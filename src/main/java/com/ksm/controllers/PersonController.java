@@ -31,6 +31,7 @@ public class PersonController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("persons", personService.getAll());
+        model.addAttribute("title", "KSM - Person Web Page");
         return "person";
     }
     
@@ -45,6 +46,7 @@ public class PersonController {
     @GetMapping("/create")
     public String createForm(Model model) {
         model.addAttribute("person", new Person());
+        model.addAttribute("title", "KSM - Person Form");
         return "create-form";
     }
     
@@ -59,6 +61,7 @@ public class PersonController {
     @GetMapping("/{id}/update")
     public String updateForm(@PathVariable("id")Integer id, Model model) {
         model.addAttribute("person", personService.getById(id));
+        model.addAttribute("title", "KSM - Person Update Form");
         return "update-form";
     }
     

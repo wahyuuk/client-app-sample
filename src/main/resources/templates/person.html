@@ -29,6 +29,8 @@ and open the template in the editor.
                     <td th:text="${person.lastName}"></td>
                     <td>
                         <a th:href="@{/person/{id}(id=${person.id})}">Detail</a>
+                        <a th:href="@{/person/{id}/update(id=${person.id})}">Update</a>
+                        <a th:href="@{/person/{id}/delete(id=${person.id})}">Delete</a>
                     </td>
                 </tr>
             </tbody>

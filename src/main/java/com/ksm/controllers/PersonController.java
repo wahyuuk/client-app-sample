@@ -37,8 +37,10 @@ public class PersonController {
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("person", personService.getById(id));
-        return "detail";
+        return "create-form";
     }
+    
+    //Cretae
     
     @GetMapping("/create")
     public String createForm(Model model) {
@@ -49,6 +51,27 @@ public class PersonController {
     @PostMapping("/create")
     public String create(@ModelAttribute Person person, Model model) {
         personService.create(person);
+        return "redirect:/person";
+    }
+    
+    //Update
+    
+    @GetMapping("/{id}/update")
+    public String updateForm(@PathVariable("id")Integer id, Model model) {
+        model.addAttribute("person", personService.getById(id));
+        return "update-form";
+    }
+    
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable("id")Integer id, 
+            @ModelAttribute Person person, Model model) {
+       personService.update(id, person);
+        return "redirect:/person";
+    }
+    
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Integer id) {
+        personService.delete(id);
         return "redirect:/person";
     }
 }

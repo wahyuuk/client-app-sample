@@ -52,4 +52,20 @@ public class PersonService {
             e.printStackTrace();
         }
     }
+    
+    public void update(Integer id, Person person) {
+        try {
+            restTemplate.put(URL + "/" + id, person);
+        } catch (RestClientException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void delete(Integer id) {
+        try {
+            restTemplate.delete(URL + "/" + id);
+        } catch (RestClientException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -5,7 +5,13 @@
  */
 
 $(document).ready(() => {
-   $("#personTable").DataTable(); 
+    var person = $("#personTable").DataTable();
+    
+    person.on('order.dt search.dt', function () {
+        person.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
 });
 
 function deleteById(id) {
@@ -16,7 +22,7 @@ function deleteById(id) {
         icon: 'warning'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "/person/"+ id + "/delete";
+            window.location.href = "/person/" + id + "/delete";
         }
     });
 }

@@ -27,6 +27,7 @@ and open the template in the editor.
                     <table  class="table" id="personTable">
                         <thead>
                             <tr>
+                                <td>No</td>
                                 <td>Person Id</td>
                                 <td>First Name</td>
                                 <td>Last Name</td>
@@ -36,6 +37,7 @@ and open the template in the editor.
 
                         <tbody class="w-100">
                             <tr th:each="person : ${persons}">
+                                <td></td>
                                 <td th:text="${person.id}"></td>
                                 <td th:text="${person.firstName}"></td>
                                 <td th:text="${person.lastName}"></td>

@@ -18,11 +18,13 @@ and open the template in the editor.
                 <div class="card-header d-flex align-items-center">
                     <div class="w-100 d-flex justify-content-between align-items-center">
                         <h5>Person Table</h5>
-                        <a th:href="@{/person/create}" class="btn btn-sm btn-success">Add New</a>
+                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#createPerson" th:onclick="createPerson()">
+                            Add New
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <table  class="table">
+                    <table  class="table" id="personTable">
                         <thead>
                             <tr>
                                 <td>Person Id</td>
@@ -32,15 +34,29 @@ and open the template in the editor.
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody class="w-100">
                             <tr th:each="person : ${persons}">
                                 <td th:text="${person.id}"></td>
                                 <td th:text="${person.firstName}"></td>
                                 <td th:text="${person.lastName}"></td>
                                 <td>
-                                    <a th:href="@{/person/{id}(id=${person.id})}" class="btn btn-sm btn-primary">Detail</a>
-                                    <a th:href="@{/person/{id}/update(id=${person.id})}" class="btn btn-sm btn-warning">Update</a>
-                                    <a th:href="@{/person/{id}/delete(id=${person.id})}" class="btn btn-sm btn-danger">Delete</a>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#createPerson" 
+                                            th:firstName="${person.firstName}"
+                                            th:lastName="${person.lastName}"
+                                            th:onclick="detailPerson(this.getAttribute('firstName'), this.getAttribute('lastName'))"
+                                            >
+                                        Detail
+                                    </button>
+                                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#createPerson" 
+                                            th:id="${person.id}"
+                                            th:firstName="${person.firstName}"
+                                            th:lastName="${person.lastName}"
+                                            th:onclick="updatePerson(this.getAttribute('id'), this.getAttribute('firstName'), this.getAttribute('lastName'))"
+                                            >
+                                        Update
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" th:id="${person.id}" 
+                                            th:onclick="deleteById(this.getAttribute('id'))">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -51,4 +67,6 @@ and open the template in the editor.
     </div>
 </div>
 
+<div th:replace="create-form :: createPerson"></div>
 <div th:replace="layout/template-layout :: asset"></div>
+<script th:src="@{/js/person.js}"></script>

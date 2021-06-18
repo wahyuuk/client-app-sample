@@ -31,6 +31,7 @@ public class PersonController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("persons", personService.getAll());
+        model.addAttribute("person", new Person());
         model.addAttribute("title", "KSM - Person Web Page");
         return "person";
     }
